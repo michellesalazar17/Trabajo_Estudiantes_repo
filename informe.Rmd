@@ -2,10 +2,10 @@
 # --- Metadatos Básicos ---
 title: "Título del Trabajo Final"
 author:
-   - Primer participante
+   - Micheye prueba
    - Segundo participante
    - Tercer participante
-date: "Febrero 2026"
+date: "Marzo 2026"
 
 # --- Metadatos Específicos de Plantilla ---
 degree: "Computación I"
