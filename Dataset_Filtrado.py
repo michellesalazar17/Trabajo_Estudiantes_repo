@@ -36,7 +36,21 @@ paises_finales = df_filtrado["Country"].unique()
 
 print(paises_finales)
 
+print(df_filtrado.columns)
 
+#renombrar columnas
+df_filtrado.columns = [
+    'Nivel_Academico',
+    'Pais',
+    'Promedio_Horas_Uso_Diario',
+    'Plataforma_Mas_Usada',
+    'Afecta_Rendimiento_Academico',
+    'Horas_Sueño_Por_Noche',
+    'Puntaje_Salud_Mental',
+    'Conflictos_Redes_Sociales',
+    'Puntaje_Adiccion'
+]
 
+print(df_filtrado.columns)
 
-
+print(df_filtrado.head)
