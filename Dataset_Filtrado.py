@@ -52,3 +52,5 @@ print(df_filtrado.columns)
 print(df_filtrado.head)
 
 print(paises_finales)
+
+df_filtrado.to_csv("Estudiantes_final.csv", index=False)
