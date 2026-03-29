@@ -27,7 +27,7 @@ df_3 = df_2[df_2["Country"].isin(resumen_paises)]
 print(df_3)
 
 #eliminar columnas que no necesitamos
-df_filtrado = df_3.drop(["Student_ID", "Age", "Relationship_Status", "Gender"], axis=1)
+df_filtrado = df_3.drop(["Student_ID", "Age", "Relationship_Status", "Gender", "Conflicts_Over_Social_Media"], axis=1)
 
 print(df_filtrado)
 
@@ -47,7 +47,6 @@ df_filtrado.columns = [
     'Afecta_Rendimiento_Academico',
     'Horas_Sueño_Por_Noche',
     'Puntaje_Salud_Mental',
-    'Conflictos_Redes_Sociales',
     'Puntaje_Adiccion'
 ]
 
