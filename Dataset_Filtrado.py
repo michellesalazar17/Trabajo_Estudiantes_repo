@@ -8,26 +8,23 @@ print(df.head)
 #nombre de columnas
 print(df.columns)
 
-#filtrar nivel academico
-df_2 = df[df["Academic_Level"] == "Graduate"]
-
 #cuantos estudiantes hay por pais
-conteo = df_2.groupby("Country").size()
+conteo = df.groupby("Country").size()
 
 print(conteo)
 
 #paises con mas de 15 estudiantes
-resumen_paises = conteo[conteo > 15].index
+resumen_paises = conteo[conteo >= 30].index
 
 print(resumen_paises)
 
 #filtramos el dataset para que solo sean de esos paises
-df_3 = df_2[df_2["Country"].isin(resumen_paises)]
+df_2 = df[df["Country"].isin(resumen_paises)]
 
-print(df_3)
+print(df_2)
 
 #eliminar columnas que no necesitamos
-df_filtrado = df_3.drop(["Student_ID", "Age", "Relationship_Status", "Gender", "Conflicts_Over_Social_Media"], axis=1)
+df_filtrado = df_2.drop(["Student_ID", "Age", "Relationship_Status", "Gender", "Conflicts_Over_Social_Media"], axis=1)
 
 print(df_filtrado)
 
@@ -53,3 +50,5 @@ df_filtrado.columns = [
 print(df_filtrado.columns)
 
 print(df_filtrado.head)
+
+print(paises_finales)
