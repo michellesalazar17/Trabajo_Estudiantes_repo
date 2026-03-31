@@ -73,7 +73,7 @@ Argumento final. Debido a esto, se plantea las siguientes preguntas de investiga
 
 \textbf{3.}	Pregunta3\ ¿De que forma el uso de redes sociales especificas afecta la salud mental y reduce las horas de sueño de los estudiantes?
 
-\textbf{5.}	Pregunta5\ ¿Cómo varían los niveles de adicción digital entre los diferentes países y qué patrones de riesgo nos permiten clasificar a los países según el impacto de ésta dependencia?
+\textbf{4.}	Pregunta4\ ¿Cómo varían los niveles de adicción digital entre los diferentes países y qué patrones de riesgo nos permiten clasificar a los países según el impacto de ésta dependencia?
 
 
 \section{Justificación}
@@ -136,9 +136,35 @@ Describir la variable en estudio en el trabajo de investigación
 \chapter{Marco Teórico}
 
 
-\section{Bases Teóricas}
+\section{Bases Teóricas} 
 
-Resumen de las bases teoricas explicadas en el capitulo y su importancia\
+Las redes sociales son un medio que cumple la función de facilitar la interacción de las personas. A través de las redes sociales, las personas pueden cambiar ideas en tiempo real y compartir información en cualquier parte del mundo. Aunque ya no son solamente un medio para socializar, sino que estas redes tienen aplicaciones que afectan el rendimiento académico y la vida cotidiana de los estudiantes. (Castells, 2012)
+En este sentido, el uso excesivo de redes sociales puede tener un impacto considerable en el bienestar psicológico de los estudiantes universitarios, afectando diversos aspectos de su salud mental.
+En éstas plataformas, se observa un aumento de la ansiedad y la presión, sobre todo cuando se prioriza la apariencia y la posición social. Los alumnos a menudo sienten la necesidad de estar a la altura de sus compañeros, lo que genera un ambiente de tensión y un mayor juicio entre ellos. Este fenómeno es particularmente evidente en aquellos que buscan mantener una reputación impecable o que compiten por estatus y reconocimiento social (Campos, 2021).
+Así cómo también, dicho uso excesivo puede alterar los hábitos de sueño. Un trabajo prolongado ante la pantalla y un uso intenso de la red son factores que pueden alterar los ciclos de sueño de quien está aprendiendo, un hecho que ocasiona que su desempeño académico se vea afectado, así como su salud mental, un mal ciclo que puede llevar a los estudiantes a la desesperanza (Campos, 2021) 
+El rendimiento académico de un alumno depende de múltiples variables, tanto internas como externas; el impulso se encuentra entre factores internos, ya que determina en que medida el alumno tiende a esforzarse de la manera que requiere el aprendizaje. En ocasiones las personas quieren aprender por su innata curiosidad, o solamente por impresionar. La consideración de la motivación inherente y externa puede influenciar el rendimiento educativo (Gonzalez, 2024).
+Por otra parte, se dice que lo que se conoce como “adicción a las redes sociales” ha sido discutido por autores que han tratado acerca de las ciberdirecciones, autores como Enrique Echeburúa, Mark Griffiths, Xavier Sánchez-Carbonell, Rubicelia Valencia Ortiz, etc. A finales de la década de los noventa se comenzó a hablar sobre una posible adicción a la televisión y a los videojuegos, siendo el doctor Mark Griffiths el primer autor en hablar sobre las “adicciones tecnológicas” (Griffiths, 1995). 
+Luego se desarrollaron ideas sobre los riesgos del uso del teléfono y el internet. Actualmente con el auge de las redes sociales se habla sobre una posible “adicción” a las mismas.
+Analizando la perspectiva que defiende que el trastorno a  las redes sociales no es una “adicción” sino una necesidad que lleva a un mal uso de manera excesiva de las redes sociales (Sánchez-Carbonell, 2008), se dice que se basa en tres factores:
+
+•	En primer lugar, argumenta la diferencia de este tipo de trastornos con respecto a las adicciones reconocidas por la OMS. Para realizar ésta afirmación se basan en que no existen sustancias adictivas que condicionen el funcionamiento psico-neuronal del usuario, estableciendo que las malas conductas no son considerables como algo importante a la hora de dictar si se considera una adicción o no. Un ejemplo de ello sería el factor de horas invertidas en redes sociales, ¿podría considerarse un factor fundamental?, la respuesta es no, debido a que el usuario puede tener un uso excesivo de redes sociales sin ser necesariamente adicto (Sánchez-Carbonell y Ursulla Obsert, 2015).
+
+•	En segundo lugar, no hay lugar a la comparación en el efecto directo que poseen las drogas con sustancias, respecto a los comportamientos adictivos. Las drogas influyen en la salud tanto mental como física del usuario. Mientras que múltiples estudios establecen que la “adicción a las redes sociales” no es causante de trastornos directamente, pero repercute indirectamente en la creación de los mismos, como puede ser depresión, miedo social ó impulsividad (Echeburúa, 2012).
+
+•	En tercer lugar, exponen la necesidad de adaptarse a una realidad basada en la tecnología. Ésta va cambiando constantemente, la manera de contactarse ha cambiado drásticamente y en la actualidad son más constantes, pero a su vez menos intensas. Por lo que también está la necesidad de adaptarnos y entender esa nueva forma de socializar. Estableciendo que a lo mejor las personas no son adictas a las redes sociales, si no que la sociedad actual demanda su uso constante, para que el usuario no quede obsoleto o anticuado en la misma (Sánchez-Carbonell y Ursulla Oberst, 2015).
+
+Bajo éstos factores principales, se defiende la idea de que las redes sociales no son adictivas, pero que no sean consideradas una adicción no significa que no tengan en cuenta sus riesgos. Consideran que dichos riesgos se pueden solucionar con el paso del tiempo, y la adaptación de la sociedad a éstas tecnologías y formas de comunicación (Sánchez-Carbonell y Ursulla Oberst, 2015).
+De igual manera, estos autores defienden que las redes sociales no solamente tienen usos perjudiciales para las personas que las consumen, sino que son de gran utilidad al usarlas correctamente, pudiendo tener beneficios positivos para su desarrollo social. Provocando el aumento de oportunidades laborales y académicas, así como una mejor participación en la sociedad  (Kuss y Griffiths, 2011; Sánchez-Carbonell y Ursulla Oberst, 2015). 
+El concepto de adicción ha estado vinculado con las drogas, por eso este término necesitaría una redefinición del mismo, adaptándolo a las adicciones de comportamiento. Aunque no hay una definición concreta sobre la adicción a las redes, tampoco hay unidad ya que los autores realizan distintas conceptualizaciones del término.
+Según Echeburúa (2012): Una adicción sin droga es toda aquella conducta repetitiva que resulta placentera en las primeras fases, generando descontrol en el sujeto, interrumpiendo su vida cotidiana a nivel social, laboral o familiar (p. 436).
+Con las investigaciones de ambas posturas y la definición de Echeburúa (que puede adaptarse a las redes sociales). Se parte de la idea de que las adicciones de comportamiento tienen la misma gravedad que las sustancias. Siendo el término correcto “adicción a las redes sociales” y no un “uso conflictivo”.
+
+
+
+
+
+
+Resumen de las bases teoricas explicadas en el capitulo y su importancia\ 
 
 \subsection{Definición 1}
 
