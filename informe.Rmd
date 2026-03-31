@@ -1,11 +1,11 @@
 ---
 # --- Metadatos Básicos ---
-title: "Título del Trabajo Final"
+title: "Analsis de la adiccion digital"
 author:
    - Micheye prueba
    - Segundo participante
    - Tercer participante
-date: "Marzo 2026"
+date: "Abril 2026"
 
 # --- Metadatos Específicos de Plantilla ---
 degree: "Computación I"
@@ -53,6 +53,7 @@ library(tidyverse)
 library(knitr)
 library(kableExtra)
 library(scales)
+
 ```
 
 \chapter*{Introducción}
@@ -91,40 +92,19 @@ Justificación del trabajo de investigación\
 \end{itemize}
 
 
-\section{Cobertura}
-
-\subsection{Horizontal}
-
-Describir la cobertura Horizontal del trabajo de investigación\
-
-\begin{table}[ht]
-\centering
-\caption{Variables consideradas} 
-\resizebox{10cm}{!} {
-\begin{tabular}{ccc}
-  \hline
-\ \ \ \ \ NOMBRE DE LA VARIABLE \\ 
-  \hline
-   VARIABLE 1 \\ 
-VARIABLE 2\\ 
-VARIABLE n\\ 
-   \hline
-\end{tabular}
-}
-\end{table}
-
-\subsection{Vertical}
-
-Describir la cobertura Vertical del trabajo de investigación
-
-
-\section{Periodo de Referencia}
-
-Describir la fuente y el Periodo de Referencia utilizado en el trabajo de investigación
-
 \section{Variables}
 
-Describir la variable en estudio en el trabajo de investigación
+La Variable Dependiente (Objetivo) en este modelo es **`Addicted_Score`**, representa el comportamiento intensivo hacia las redes sociales medido en puntaciones del 1 al 9.
+
+Como variables explicativas o independientes se analizan:
+
+\begin{enumerate}
+\item Variables Temporales: \textbf{Avg\_Daily\_Usage\_Hours} y \textbf{Sleep\_Hours\_Per\_Nigh}
+  \item Variables Categóricas: \textbf{Academi\_Level}, 
+  \textbf{Most\_Used\_Platform} y \textbf{Affects\_Academic\_Performance}
+  \item Variables Geográficas: \textbf{Country}
+  \item Variables cuantitativas: \textbf{Mental\_Health\_Score}
+\end{enumerate}
 
 \chapter{Marco Teórico}
 
@@ -153,9 +133,55 @@ En esta sección se presentan las metodologías y/o test necesarios relacionados
 
 Desarrollo\
 
-\subsection{Item 1}
+\subsection{Procesamiento y Limpieza de Datos}
 
-Descripción\
+Se realizo seleccion y renombre de columnas a analizar, diganostico de valores nulos para cada columna y conversion de datos necesarios.
+
+```{r}
+#Carga de librerias
+library(tidyverse)
+library(dplyr)
+library(readr)
+
+#Carga de datos crudos
+estudiantes <- read_csv("C:/Users/Maikelvins/Downloads/4. Estudiantes.csv")
+
+
+#Seleccion de columnas
+estudiantes <- estudiantes %>% 
+  select(Country,
+         Academic_Level,
+         Avg_Daily_Usage_Hours,
+         Most_Used_Platform,
+         Affects_Academic_Performance,
+         Sleep_Hours_Per_Night,
+         Mental_Health_Score,
+         Addicted_Score)
+
+#Renombrar colummnas
+estudiantes <- estudiantes %>% 
+  rename(pais = Country,
+         nivel_academico = Academic_Level,
+         promedio_uso_diario = Avg_Daily_Usage_Hours,
+         red_social = Most_Used_Platform,
+         rendimiento_acm = Affects_Academic_Performance,
+         horas_sueño = Sleep_Hours_Per_Night,
+         salud_mental = Mental_Health_Score,
+         adiccion = Addicted_Score)
+
+#Diagnostico de valores nulos
+colSums(is.na(estudiantes))
+print(estudiantes)
+
+#conversion de datos 
+estudiantes <- estudiantes %>% 
+  mutate(nivel_academico = as.factor(nivel_academico),
+         salud_mental = as.integer(round(salud_mental)),
+         adiccion = as.integer(round(adiccion)))
+
+
+```
+
 
 \subsection{Item 2}
 
