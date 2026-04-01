@@ -1,10 +1,11 @@
 ---
 # --- Metadatos Básicos ---
-title: "Analsis de la adiccion digital"
+
+title: "Impacto de la adiccion a las redes sociales en el rendimiento académico y bienestar estudiantil en diferentes países"
 author:
-   - Micheye prueba
-   - Segundo participante
-   - Tercer participante
+   - Michelle Salazar
+   - José Hernández
+   - Diego Guerrero
 date: "Abril 2026"
 
 # --- Metadatos Específicos de Plantilla ---
@@ -61,49 +62,63 @@ library(scales)
 Introducción del trabajo de investigación
 
 \chapter{Planteamiento del Problema}
-Describir planteamiento del problema\
+Desde su aparición las redes sociales cambiaron la manera en que las personas interactúan con el mundo real, desde servir como medios de comunicación hasta convertirse en plataformas que afectan el comportamiento del ser humano. En los estudiantes estas plataformas son útiles para acceder a información y conocer noticias mundiales. Sin embargo, el uso de las redes sociales se ha transformado en un fenómeno que crece a gran escala, la adicción a las **Redes Sociales**.
 
-Argumento final. Debido a esto, se plantea las siguientes preguntas de investigación:\
+El problema radica en que el uso de las redes puede llegar a un extremo de dependencia, e incluso excesiva en algunos casos. Siendo un factor que influye en los estudiantes y en su capacidad de concentración, afectando su rendimiento académico.
+
+La gran mayoría de estudiantes tienen acceso a las diferentes plataformas de redes sociales, pero desconocemos su comportamiento a nivel geográfico y variables como el tipo específico de red social (TikTok, Instagram, WhatsApp, etc.) factores como la salud mental, o el entorno geográfico puede darnos ciertas “tendencias” sobre la dependencia a las redes sociales. Por esto, es necesario investigar si la adicción a las redes sociales se comporta de la misma manera en todo el mundo, o responde a  patrones específicos por región.
+
+Argumento final. Debido a esto, se plantea las siguientes preguntas de investigación:
 
 
-\textbf{1.}	Pregunta1\
+\textbf{1.}\ ¿Cómo se distribuyen los niveles de adicción a las redes sociales con dependencia significativamente alta? 
 
-\textbf{2.}	Pregunta2\
+\textbf{2.}\ ¿Cómo varían los niveles de adicción a las redes sociales entre los diferentes países y qué patrones de riesgo nos permiten clasificar según el impacto de ésta dependencia?
 
-\textbf{3.}	Pregunta3\
+\textbf{3.}\ ¿Los estudiantes con mayores puntajes de adiccion a las redes sociales reportan una percepcion negativa del impacto de las redes sociales en su rendimiento académico?
+
+\textbf{4.}\ ¿De que forma el uso promedio diario de redes sociales afecta la salud mental y la calidad de sueño en los estudiantes, y que plataformas especificas se asocian con estos efectos?
+
+
 
 
 \section{Justificación}
 
-Justificación del trabajo de investigación\
+El propósito de esta investigación es identificar los patrones y comportamientos del uso excesivo de las redes sociales, determinando que niveles significativos de adiccion se encuentran y que relacion tienen con la vida del estudiante. Asimismo, se busca comprender que factores afectan el rendimiento académico, la salud mental y trastornos de sueño.
+
+Mediante éste análisis se busca aplicar estrategias y concientizar la prevención a la hora de usar redes sociales, logrando establecer una vida más saludable, productiva y equilibrada para los estudiantes en distintos países.
 
 \section{Objetivos}
  
 \subsection{Objetivo General}
 \begin{itemize}
-  \item{Describir objetivo general del trabajo de investigación}
+  \item{Analizar la adicción a las redes sociales y su impacto en el bienestar académico y mental de los estudiantes, comparando los patrones de comportamiento entre los diferentes países.}
 \end{itemize}
 
 \subsection{Objetivos Específicos}
 \begin{itemize}
-  \item{Describir objetivo 1 del trabajo de investigación}
-  \item{Describir objetivo 2 del trabajo de investigación}
-  \item{Describir objetivo 3 del trabajo de investigación}
-\end{itemize}
-
+  \item{Describir estadisticamente los puntajes de adicción a las redes sociales de los estudiantes para determinar si existen grupos con una dependencia significativamente alta.}
+  
+  \item{Identificar patrones geográficos de riesgo mediante la clasificación de países según sus niveles de adicción permitiendo detectar tendencias regionales y variaciones significativas.}
+  
+  \item{Determinar la asociación entre el nivel de adicción a las redes sociales y la percepción del rendimiento academico para reconocer si los estudiantes con mayor dependencia reportan un impacto negativo en sus estudios.}
+  
+  \item{Cuantificar el impacto del uso promedio diario de redes sociales en la salud mental y calidad del sueño en los estudiantes, especificando las plataformas asociadas a estos efectos.}
+  \end{itemize}
+  
 
 \section{Variables}
 
-La Variable Dependiente (Objetivo) en este modelo es **`Addicted_Score`**, representa el comportamiento intensivo hacia las redes sociales medido en puntaciones del 1 al 9.
+La variable princial (Dependiente) de este estudio es **`Addicted_Score`**, representa el comportamiento intensivo hacia las redes sociales medido en una escala de puntaciones del 1 al 9.
 
 Como variables explicativas o independientes se analizan:
 
 \begin{enumerate}
 \item Variables Temporales: \textbf{Avg\_Daily\_Usage\_Hours} y \textbf{Sleep\_Hours\_Per\_Nigh}
-  \item Variables Categóricas: \textbf{Academi\_Level}, 
+  \item Variables Categóricas: \textbf{Gender}, \textbf{Relationship\_Status},  \textbf{Academi\_Level}, 
   \textbf{Most\_Used\_Platform} y \textbf{Affects\_Academic\_Performance}
   \item Variables Geográficas: \textbf{Country}
-  \item Variables cuantitativas: \textbf{Mental\_Health\_Score}
+  \item Variables Magnitud: \textbf{Age}, \textbf{Conflicts\_Over\_Social\_Media} y  \textbf{Mental\_Health\_Score}
 \end{enumerate}
 
 \chapter{Marco Teórico}
@@ -135,32 +150,26 @@ Desarrollo\
 
 \subsection{Procesamiento y Limpieza de Datos}
 
-Se realizo seleccion y renombre de columnas a analizar, diganostico de valores nulos para cada columna y conversion de datos necesarios.
+Se realizo diagnostico de valores nulos y seleccion de columnas a analizar, abarcando variables demograficos (`Country`), academicos, comportamientos digitales (`Avg_Daily_Usage_Hours y  Most_Used_Platformt`), salud (`Mental_Health_Score`), entre otros. Aparte conversion de tipo de datos.
+
 
 ```{r}
 #Carga de librerias
 library(tidyverse)
-library(dplyr)
-library(readr)
 
 #Carga de datos crudos
-estudiantes <- read_csv("C:/Users/Maikelvins/Downloads/4. Estudiantes.csv")
+est <- read_csv("C:/Users/Maikelvins/Downloads/4. Estudiantes.csv")
+
+#Diagnostico de valores nulos
+colSums(is.na(est))
+
+```
 
 
+```{r, include=FALSE}
 #Seleccion de columnas
-estudiantes <- estudiantes %>% 
-  select(Country,
-         Academic_Level,
-         Avg_Daily_Usage_Hours,
-         Most_Used_Platform,
-         Affects_Academic_Performance,
-         Sleep_Hours_Per_Night,
-         Mental_Health_Score,
-         Addicted_Score)
-
-#Renombrar colummnas
-estudiantes <- estudiantes %>% 
-  rename(pais = Country,
+est <- est %>% 
+  select(pais = Country,
          nivel_academico = Academic_Level,
          promedio_uso_diario = Avg_Daily_Usage_Hours,
          red_social = Most_Used_Platform,
@@ -169,12 +178,8 @@ estudiantes <- estudiantes %>%
          salud_mental = Mental_Health_Score,
          adiccion = Addicted_Score)
 
-#Diagnostico de valores nulos
-colSums(is.na(estudiantes))
-print(estudiantes)
-
 #conversion de datos 
-estudiantes <- estudiantes %>% 
+est <- est %>% 
   mutate(nivel_academico = as.factor(nivel_academico),
          salud_mental = as.integer(round(salud_mental)),
          adiccion = as.integer(round(adiccion)))
