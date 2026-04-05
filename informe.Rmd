@@ -143,27 +143,84 @@ Bajo éstos factores principales, se defiende la idea de que las redes sociales 
 De igual manera, estos autores defienden que las redes sociales no solamente tienen usos perjudiciales para las personas que las consumen, sino que son de gran utilidad al usarlas correctamente, pudiendo tener beneficios positivos para su desarrollo social. Provocando el aumento de oportunidades laborales y académicas, así como una mejor participación en la sociedad  (Kuss y Griffiths, 2011; Sánchez-Carbonell y Ursulla Oberst, 2015). 
 El concepto de adicción ha estado vinculado con las drogas, por eso este término necesitaría una redefinición del mismo, adaptándolo a las adicciones de comportamiento. Aunque no hay una definición concreta sobre la adicción a las redes, tampoco hay unidad ya que los autores realizan distintas conceptualizaciones del término.
 Según Echeburúa (2012): Una adicción sin droga es toda aquella conducta repetitiva que resulta placentera en las primeras fases, generando descontrol en el sujeto, interrumpiendo su vida cotidiana a nivel social, laboral o familiar (p. 436).
-Con las investigaciones de ambas posturas y la definición de Echeburúa (que puede adaptarse a las redes sociales). Se parte de la idea de que las adicciones de comportamiento tienen la misma gravedad que las sustancias. Siendo el término correcto “adicción a las redes sociales” y no un “uso conflictivo”.
-
-
-
-
+Con las investigaciones de ambas posturas y la definición de Echeburúa (que puede adaptarse a las redes sociales). Se parte de la idea de que las adicciones de comportamiento tienen la misma gravedad que las sustancias. Siendo el término correcto “adicción a las redes sociales” y no un “uso conflictivo".\
 
 
 Resumen de las bases teoricas explicadas en el capitulo y su importancia\ 
 
-\subsection{Definición 1}
+En este capitulo se resumen las bases teoricas, sus definiciones y conceptos fundamentales, por ende se abordan temas como la salud mental y el rendimiento académico que son algunos de los más detallados, es vital conocer su importancia, ya que se ven relacionados y afectan de una u otra manera el rendimiento académico y en el desarrollode los estudiantes.   
 
-Descripción de la definición 1\
+\subsection{Rendimiento académico}
 
-\subsection{Definición 2}
+Descripción de la definición 1\ El rendimiento académico hace referencia a la evaluación del conocimiento adquirido en el ámbito escolar, secundario o universitario. Es decir, que es una "medida" de las capacidades del alumno. Un estudiante con un buen rendimiento académico es aquel que tiene resultados positivos en sus respectivas asignaciones.
 
-Descripción de la definición 2\
+\subsection{Factores que afectan el rendimiento académico}
 
-\subsection{Definición n}
+Descripción de la definición 2\ Se relaciona con el factor psicológico, como la poca motivación, el desinterés o las distracciones en clase, que dificultan la comprensión de los conocimientos impartidos por el docente y termina afectando al rendimiento académico a la hora de las evaluaciones.
 
-Descripción de la definición n\
+\subsection{Salud Mental}
 
+Descripción de la definición 3\ Es un estado de bienestar social, psicológico y emocional de una persona, que permite afrontar el estrés y las demás dificultades a nivel personal.
+
+\subsection{Factores que afectan la salud mental}
+
+Descripción de la definición 4\ Factores como la genética, el entorno familiar, la educación, situación económica y experiencias traumáticas pueden influir en este equilibrio,los problemas de salud mental pueden presentarse en cualquier persona, sin importar edad, género o condición social.
+
+\subsection{Importancia y cuidado de la salud mental}
+
+Descripción de la definición 5\ Es importante que las personas cuiden su salud mental, con hábitos de vida saludables, como una buena nutrición, ejercicio y un sueño adecuado, además que afecta el desarrollo personal,el ambito laboral, social o familiar.
+
+\subsection{Redes Sociales}
+
+Descripción de la definición 6\ Son plataformas digitales que permiten a las personas compartir información, también sirven como un medio de comunicación, existen muchas plataformas de redes sociales, por ejemplo : Snapchat, WhatsApp, Instagram, TikTok, etc.
+
+\subsection{Tipos de redes sociales}
+
+Descripción de la definición 7\ Pueden clasificarse en dos tipos de redes, estas son:
+• Redes sociales horizontales : Son aaquellas que no tienen una temática determinada, éstas funcionan como medio de comunicación o entretenimiento, como por ejemplo: Fcebook, Twitter(X)
+
+• Redes sociales verticales : Son aquellas que relacionan personas con intereses en común (deportes, música, hobbies), por ejemplo: LinkedIn, que involucra individuos que comparten el ámbito laboral o que buscan ampliar sus fronteras laborales.
+
+\subsection{Uso diario de las redes sociales}
+
+Descripción de la definición 8\ Ha transformado la manera en que nos comunicamos, trabajamos y aprendemos, convirtiendose en un componente de la vida moderna, que requiere un manejo adecuado para sacarle el mayor provecho y reducir sus riesgos.
+
+\subsection{El Sueño}
+
+Descripción de la definición 9\ Es un proceso biológico escencial que permite al cuerpo recuperarse física y mentalmente, y se pierde parcialmente la actividad muscular, a pesar de esto el cerebro sigue presentando actividad, experimentando cambios en la presion arterial y respiración. 
+
+\subsection{Calidad de sueño}
+
+Descripción de la definición 10\ Se refiere a varios factores que afectan el descanso, el "como" se logra el sueño, los períodos de vigilia durante la noche. Además la calidad de sueño también es un funcionamiento adecuado durante el día.
+
+\subsection{Horas de sueño}
+
+Descripción de la definición 11\ Se refiere a la cantidad de sueño (en horas) que una persona duerme en un lapso de 24 horas. Es recomendable dormir por lo menos 4 o 5 horas como mínimo, y en adultos o personas mayores dormir 7 u 8 horas para tener un buen rendimiento en el día. 
+
+\subsection{Nivel Académico}
+
+Descripción de la definición 12\ Hacde referencia al grado de formación educativa de una persona desde una educación basica hasta algo mucho más avanzado como una maestría o un doctorado.
+
+\subsection{Tipos de niveles academicos}
+
+Descripción de la definición 13\ Se clasifican en:
+
+• Preesolar : Se centra en el desarrollo inicial al propio ritmo del niño/a y es un ciclo en el que se enseñan esos primeros pasos, como recortar, dibujar, etc.
+
+• Primaria : Se enfoca en el desarrollo cognitivi de los estudiantes, y se imparten materias como matemáticas, literatura, ciencias y deporte.
+
+• Secundaria : En esta etapa ofrecen más materias, competencias técnicas y científicas,y su desarrollo va avanzando mediante los años (normalmente 5 años).
+
+• Universitaria : Durante esta etapa se cursan carreras como licenciaturas, ingenierías, entre otras, otorgando títulos en profesiones específicas. Aquí los estudiantes desarrollan capacidades analíticas y profesionales más complejas. También se fomenta la autonomía en el estudio y el pensamiento crítico. Es considerada una de las etapas más importantes.
+
+• Postgrado : Este nivel está dirigido a quienes buscan una carrera académica o científica, o desean alcanzar el más alto grado de profesionalización en su área. incluye especializaciones, maestrías y doctorados. 
+Las especializaciones suelen tener una duración corta y permiten profundizar conocimientos en un área específica.
+Las maestrías son programas más complejos, que combinan teoría, práctica e investigación.
+Los doctorados, por último, son la máxima instancia académica, orientada casi exclusivamente a la producción de conocimiento original a través de investigaciones.
+
+\subsection{Adicción}
+
+Descripción de la definición 14\ Según la OMS, una adicción es "un trastorno de salud mental y un trastorno del comportamiento caracterizado por la necesidad compulsiva de consumir una sustancia como puede ser alcohol, drogas, tabaco o de realizar una actividad, por ejemplo: un juego ó trabajo, a pesar de los problemas negativos asociados con dicho consumo o actividad".
 
 \chapter{Marco Metódico}
 En esta sección se presentan las metodologías y/o test necesarios relacionados con la práctica divulgada en el marco teórico, así como las fuentes de datos.
@@ -182,7 +239,7 @@ Se realizo diagnostico de valores nulos y seleccion de columnas a analizar, abar
 library(tidyverse)
 
 #Carga de datos crudos
-est <- read_csv("C:/Users/Maikelvins/Downloads/4. Estudiantes.csv")
+est <- read_csv("Dataset/4. Estudiantes.csv")
 
 #Diagnostico de valores nulos
 colSums(is.na(est))
