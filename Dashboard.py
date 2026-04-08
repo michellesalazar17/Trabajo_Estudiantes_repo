@@ -47,13 +47,9 @@ with tab1:
 
     st.divider()
 
-    st.header("Nivel educativo con mas horas de uso")
-
     #Agrupar y calcular el promedio
     df_nivel_educativo = df.groupby('Nivel_Academico')['Promedio_Horas_Uso_Diario'].mean().reset_index()
     df_nivel_educativo = df_nivel_educativo.sort_values(by='Promedio_Horas_Uso_Diario', ascending=False)
-
-    st.header("Uso de Redes Sociales por Nivel Educativo")
 
     #grafico de barra
     fig2 = px.bar(
@@ -63,97 +59,139 @@ with tab1:
         title='Promedio de Horas Diarias por Nivel Académico',
     labels={
         'Nivel_Academico': 'Nivel Academico', 
-        'Promedio_Horas_Uso_Diaria': 'Promedio de Horas Diario'
+        'Promedio_Horas_Uso_Diaria': 'promedio horas diaria'
     },
-    color='Promedio_Horas_Uso_Diario',
-    color_continuous_scale='Viridis'
+        color="Nivel_Academico",
+        color_discrete_sequence=["#ADD8E6", "#00008B"]    
 )
 
     st.plotly_chart(fig2, use_container_width=True)
+
+    fig2.update_layout(coloraxis_showscale=False)
 
     #conclusion
     nivel_max = df_nivel_educativo.iloc[0]['Nivel_Academico']
     horas_max = df_nivel_educativo.iloc[0]['Promedio_Horas_Uso_Diario']
 
     st.subheader("Conclusión:")
-    st.info(f"El nivel educativo que más tiempo pasa en redes sociales es **{nivel_max}**, con un promedio de **{horas_max:.2f} horas** diarias.")
-
+    st.write(f"El nivel educativo que más tiempo pasa en redes sociales es **{nivel_max}**, con un promedio de **{horas_max:.2f} horas** diarias.")
 
 with tab2:
     st.subheader("Adicción vs Sueño")
-    #grafico de relacion lineal
-    fig_sleep = px.scatter(df, 
-        x="Puntaje_Adiccion", 
-        y="Horas_Sueno",
-        trendline="ols", 
-    trendline_color_override="red",
-        title="¿A mayor adicción, menos horas de sueño?",
-        labels={"Puntaje_Adiccion": "nivel de adiccion", 
-    "Horas_Sueno": "Horas de Sueño"})
     
-    st.plotly_chart(fig_sleep)
+    # creacion del histograma
+    fig_hist = px.histogram(
+    df, 
+    x="Horas_Sueno", 
+    color="Puntaje_Adiccion",
+    title="Distribución de Horas de Sueño por Nivel de Adicción",
+    labels={"Horas_Sueno": "Horas de Sueño", "count": "Número de Estudiantes"},
+    opacity=0.7,
+    barmode="group" 
+)
+    #ajuste del diseno
+    fig_hist.update_layout(
+    bargap=0.1, 
+    xaxis_title="Horas de Sueño",
+    yaxis_title="Cantidad de Estudiantes"
+)
+    
+    #paar que aparezca en la app
+    st.plotly_chart(fig_hist, use_container_width=True)
 
     #analisis
-    st.markdown("""
-### 📝 Interpretación de la Tendencia
-La línea roja de regresión confirma una **reducción lineal de las horas de sueño** conforme aumenta el puntaje de adicción. 
-Los estudiantes en niveles críticos de dependencia (8-9) reportan hasta **4 horas menos** de descanso nocturno en comparación con aquellos con niveles bajos.
+    st.markdown("### 📝 Análisis del Histograma")
+
+    st.write("""
+Al observar la distribución de frecuencias, se identifican tres hallazgos clave:
+
+1. **Desplazamiento de Masa:** Los niveles de adicción más altos (colores azules/celestes) muestran una clara **asimetría hacia la izquierda**, concentrando a la mayoría de los estudiantes en el rango de **4 a 6 horas** de sueño.
+2. **Brecha de Descanso:** Existe una diferencia marcada entre los picos de frecuencia. Mientras que los niveles de adicción moderada alcanzan su máximo cerca de las **7-8 horas**, los niveles críticos rara vez superan las 6 horas.
+3. **Zona de Riesgo:** El tramo de **menos de 5 horas** de sueño está poblado casi exclusivamente por estudiantes con puntajes de adicción elevados, lo que sugiere que la dependencia digital es un factor determinante en la privación del sueño.
 """)
     
     st.divider() 
 
     st.header("Distribución de Salud Mental según Nivel de Adicción")
 
-    #Grafico de salud mental (box plot)
-    fig_mental = px.box(df, 
-                        x="Puntaje_Adiccion", 
-                        y="Puntaje_Salud_Mental",
-                        color="Puntaje_Adiccion",
-                        )
-    st.plotly_chart(fig_mental)
+    st.subheader("Relación: Salud Mental vs Adicción")
+
+    #agrupo los datos par ver la frecuencia
+    # cuantas personas hay en cada cruce del puntaje
+    df_burbujas = df.groupby(['Puntaje_Adiccion', 'Puntaje_Salud_Mental']).size().reset_index(name='Cantidad_Estudiantes')
+
+    #creacion grafico de burbujas
+    fig_burbujas = px.scatter(
+        df_burbujas,
+        x="Puntaje_Adiccion",
+        y="Puntaje_Salud_Mental",
+        size="Cantidad_Estudiantes", #depende de la cantidad de estudiantes
+        color="Puntaje_Salud_Mental", 
+        hover_name="Cantidad_Estudiantes", 
+        title="Gráfico de Burbujas: Frecuencia de Salud Mental por Adicción",
+        labels={
+            "Puntaje_Adiccion": "Nivel de Adicción",
+            "Puntaje_Salud_Mental": "Nivel de Salud Mental",
+            "Cantidad_Estudiantes": "Nro. de Estudiantes"
+        },
+        size_max=40#tamano
+    )
+
+    #para que no solo se vean los numeros enteros
+    fig_burbujas.update_layout(
+        xaxis=dict(tickmode='linear', tick0=1, dtick=1),
+        yaxis=dict(tickmode='linear', tick0=1, dtick=1)
+    )
+
+    #paar que aparezca en el dashboard
+    st.plotly_chart(fig_burbujas, use_container_width=True)
 
     #analisis
-    st.markdown("""
-### 🧠 Interpretación de Salud Mental
-Se observa que el incremento de la dependencia digital se asocia 
-con una mayor inestabilidad emocional. Los estudiantes con puntajes de adicción más altos suelen 
-reportar los niveles más bajos de bienestar mental.
-""")
+    st.markdown("### 📝 Análisis de Salud Mental y Adicción")
 
+    st.write("""
+El gráfico de burbujas revela una tendencia estructural en los datos:
+
+1. **Correlación Inversa:** Existe una trayectoria descendente clara. A medida que el **Nivel de Adicción** se desplaza hacia la derecha (valores 8 y 9), el **Nivel de Salud Mental** cae hacia los valores más bajos (4 y 5).
+2. **Concentración de la Muestra:** Las burbujas de mayor tamaño se sitúan en los niveles de adicción 6 y 7 con una salud mental intermedia. Esto indica que el grueso de la población estudiantil ya presenta signos de afectación moderada.
+3. **Puntos Críticos:** Es alarmante observar que en el nivel de **Adicción 9**, la mayor concentración de estudiantes se encuentra en los niveles de **Salud Mental 4 y 5**, desapareciendo casi por completo las burbujas en los niveles de salud óptimos (7 u 8).
+""")
+    
     st.divider()
 
-    st.header("Existe relacion entre el uso diario y la adiccion?")
+    st.subheader("Análisis de Uso Diario por Nivel de Adicción")
 
-    #gráfico de dispersión
-    fig = px.scatter(
+    #boxplot de notched
+    fig_uso = px.box(
         df, 
-        x='Promedio_Horas_Uso_Diario', 
-        y='Puntaje_Adiccion',
-        trendline="ols", 
-        trendline_color_override="red",
+        x="Puntaje_Adiccion", 
+        y="Promedio_Horas_Uso_Diario", # Nombre actualizado
+        notched=True, # El toque estadístico para comparar medianas
+        title="Distribución de Horas de Uso según Nivel de Adicción",
+        color="Puntaje_Adiccion",
+        points="all", # Para ver a cada estudiante como un punto
         labels={
-        'Avg_Daily_Usage_Hours': 'Horas de Uso Diario',
-        'Addicted_Score': 'Puntaje de Adicción'
-    },
-        title="Horas de Uso vs. Adicción",
-        template="plotly_white"
-)
+            "Puntaje_Adiccion": "Nivel de Adicción",
+            "Promedio_Horas_Uso_Diario": "Horas de Uso Diario"
+        }
+    )
 
-#analisis
-    st.plotly_chart(fig, use_container_width=True)
+    #quito la leyenda
+    fig_uso.update_layout(showlegend=False)
 
-    correlacion = df['Promedio_Horas_Uso_Diario'].corr(df['Puntaje_Adiccion'])
+    #mostrar en el dashboard
+    st.plotly_chart(fig_uso, use_container_width=True)
 
-    st.subheader("Conclusión:")
+    #analisis
+    st.markdown("### 📝 Análisis de Intensidad de Uso vs Adicción")
 
-    st.write(f"Coeficiente de correlación: **{correlacion:.2f}**")
+    st.write("""
+El diagrama de cajas y bigotes con muescas revela hallazgos estadísticos contundentes:
 
-    if correlacion >= 0.6:
-        st.success("Existe una **fuerte relación positiva**. El tiempo de uso es un factor determinante en el puntaje de adicción.")
-    elif 0.3 <= correlacion < 0.6:
-        st.info("Existe una **relación moderada**. Se observa una tendencia clara al aumento de la adicción con el uso prolongado.")
-    else:
-        st.warning("La relación es **débil**. Aunque hay una tendencia, otros factores podrían estar influyendo en la adicción.")
+1. **Significancia Estadística:** Se observa que las **muescas no se solapan** entre la mayoría de los niveles (especialmente entre el nivel 6, 7, 8 y 9). Esto indica, con un **95% de confianza**, que las medianas de horas de uso diario son significativamente diferentes entre cada nivel de adicción.
+2. **Relación Proporcional:** Existe una tendencia ascendente casi perfecta. A mayor puntaje de adicción, tanto la mediana como los cuartiles se desplazan hacia arriba, pasando de un uso de ~2 horas (Nivel 3) a más de **7 horas diarias** (Nivel 9).
+3. **Dispersión de los Datos:** El nivel de adicción 7 muestra una caja más amplia y puntos más dispersos, lo que sugiere que es un "punto de quiebre" donde el comportamiento de los estudiantes varía más antes de estabilizarse en un uso intensivo crónico (niveles 8 y 9).
+""")
 
 with tab3:
     st.subheader("Análisis de las Plataformas más Utilizadas")
@@ -177,7 +215,6 @@ with tab3:
 
     #analisis
     st.markdown(f"""
-    **Análisis rápido:** En este gráfico se observa la distribución de los **{len(df)}** estudiantes según su plataforma principal. 
+    **Análisis:** En este gráfico se observa la distribución de los **{len(df)}** estudiantes según su plataforma principal. 
     Esto nos permite identificar qué redes sociales tienen mayor impacto en su rutina diaria.
     """)
-
