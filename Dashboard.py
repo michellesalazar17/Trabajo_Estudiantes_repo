@@ -3,7 +3,7 @@ import plotly.express as px
 import pandas as pd
 
 #Titulo
-st.title("Analisis de adiccion a las redes sociales y el bienestar estudiantil")
+st.title("Analisis de Adiccion a las Redes Sociales y el Bienestar Estudiantil")
 
 #carga de datos
 df_final = pd.read_csv("Estudiantes_final.csv", encoding="latin1")
@@ -12,14 +12,33 @@ df = df_final.rename(columns={col: "Horas_Sueno" for col in df_final.columns if 
 
 df.columns = df.columns.str.strip()
 
+st.sidebar.title("Panel de Control")
+st.sidebar.markdown("Usa estos filtros para actualizar los gráficos:")
+
+#filtro por País
+paises = ["Todos"] + list(df['Pais'].unique())
+pais_seleccionado = st.sidebar.selectbox("🌍 Selecciona un País:", paises)
+
+#filtro por Nivel Académico 
+niveles = ["Todos"] + list(df['Nivel_Academico'].unique())
+nivel_seleccionado = st.sidebar.multiselect("🎓 Nivel Académico:", niveles, default="Todos")
+
+df_filtrado = df.copy()
+
+if pais_seleccionado != "Todos":
+    df_filtrado = df_filtrado[df_filtrado['Pais'] == pais_seleccionado]
+
+if "Todos" not in nivel_seleccionado and len(nivel_seleccionado) > 0:
+    df_filtrado = df_filtrado[df_filtrado['Nivel_Academico'].isin(nivel_seleccionado)]
+
 #empieza la fiesta
-tab1, tab2, tab3, tab4 = st.tabs(["Rendimiento Academico", "Adiccion, Salud Mental y Sueño", "Plataformas Mas Usada", "lo otro"])
+tab1, tab2, tab3, tab4 = st.tabs(["Rendimiento Academico", "Bienestar Estudiantil", "Plataformas Mas Usada", "Nivel de Adiccion"])
 
 with tab1:
     st.subheader("Impacto en el Rendimiento")
     
     #gráfico (Box Plot)
-    fig_rendimiento = px.box(df,
+    fig_rendimiento = px.box(df_filtrado,
         x="Afecta_Rendimiento_Academico", 
         y="Puntaje_Adiccion",
         color="Afecta_Rendimiento_Academico",
@@ -47,7 +66,7 @@ with tab1:
 
     st.divider()
 
-    #Agrupar y calcular el promedio
+    #agrupar y calcular el promedio
     df_nivel_educativo = df.groupby('Nivel_Academico')['Promedio_Horas_Uso_Diario'].mean().reset_index()
     df_nivel_educativo = df_nivel_educativo.sort_values(by='Promedio_Horas_Uso_Diario', ascending=False)
 
@@ -76,12 +95,55 @@ with tab1:
     st.subheader("Conclusión:")
     st.write(f"El nivel educativo que más tiempo pasa en redes sociales es **{nivel_max}**, con un promedio de **{horas_max:.2f} horas** diarias.")
 
+    st.divider()
+
+    df_conteo = df_filtrado['Afecta_Rendimiento_Academico'].value_counts().reset_index()
+    df_conteo.columns = ['Afecta_Rendimiento_Academico', 'total']
+
+    # 3. Crear el gráfico de torta
+    fig = px.pie(
+        df_conteo, 
+        values='total', 
+        names='Afecta_Rendimiento_Academico',
+        hole=0.5, # Estilo donut
+        color='Afecta_Rendimiento_Academico',
+        color_discrete_map={'Yes': '#ADD8E6', 'No': '#00008B'},
+        title="Porcentaje de Estudiantes que les Afecta el uso de redes sociales"
+    )
+
+    fig.update_layout(showlegend=False)
+
+    fig.update_traces(textposition='inside', textinfo='percent+label')
+
+    fig.update_layout(template="plotly_dark")
+
+    st.plotly_chart(fig, use_container_width=True)
+
+    total_alumnos = df_conteo['total'].sum()
+    st.write(f"Total de estudiantes analizados: **{total_alumnos}**")
+
+st.markdown("---") # Línea divisoria
+
+# Creamos la "ventana" desplegable
+with st.expander("📂 Haz clic aquí para ver la Base de Datos completa"):
+    st.write("A continuación se muestran los datos originales filtrados:")
+    
+    # Mostramos el dataframe interactivo
+    st.dataframe(
+        df_filtrado, 
+        use_container_width=True, # Para que ocupe todo el ancho
+        column_config={
+            "Puntaje_Adiccion": st.column_config.NumberColumn("Nivel Adicción", format="%d ⭐"),
+            "Promedio_Horas_Uso_Diario": st.column_config.NumberColumn("Horas Uso", format="%.1f h")
+        }
+    )
+
 with tab2:
     st.subheader("Adicción vs Sueño")
     
     # creacion del histograma
     fig_hist = px.histogram(
-    df, 
+    df_filtrado, 
     x="Horas_Sueno", 
     color="Puntaje_Adiccion",
     title="Distribución de Horas de Sueño por Nivel de Adicción",
@@ -118,7 +180,7 @@ Al observar la distribución de frecuencias, se identifican tres hallazgos clave
 
     #agrupo los datos par ver la frecuencia
     # cuantas personas hay en cada cruce del puntaje
-    df_burbujas = df.groupby(['Puntaje_Adiccion', 'Puntaje_Salud_Mental']).size().reset_index(name='Cantidad_Estudiantes')
+    df_burbujas = df_filtrado.groupby(['Puntaje_Adiccion', 'Puntaje_Salud_Mental']).size().reset_index(name='Cantidad_Estudiantes')
 
     #creacion grafico de burbujas
     fig_burbujas = px.scatter(
@@ -159,45 +221,61 @@ El gráfico de burbujas revela una tendencia estructural en los datos:
     
     st.divider()
 
-    st.subheader("Análisis de Uso Diario por Nivel de Adicción")
+    df_linea = df_filtrado.groupby('Puntaje_Adiccion')['Promedio_Horas_Uso_Diario'].mean().reset_index()
 
-    #boxplot de notched
-    fig_uso = px.box(
-        df, 
-        x="Puntaje_Adiccion", 
-        y="Promedio_Horas_Uso_Diario", # Nombre actualizado
-        notched=True, # El toque estadístico para comparar medianas
-        title="Distribución de Horas de Uso según Nivel de Adicción",
-        color="Puntaje_Adiccion",
-        points="all", # Para ver a cada estudiante como un punto
-        labels={
-            "Puntaje_Adiccion": "Nivel de Adicción",
-            "Promedio_Horas_Uso_Diario": "Horas de Uso Diario"
-        }
+    df_linea = df_linea.sort_values(by='Puntaje_Adiccion')
+
+    st.subheader("Tendencia de Uso Diario por Nivel de Adicción")
+
+    fig_tendencia = px.line(
+        df_linea, 
+        x='Puntaje_Adiccion', 
+        y='Promedio_Horas_Uso_Diario',
+        markers=True,
+        title="Evolución del tiempo de uso según la adicción",
+        color_discrete_sequence=['#ADD8E6'] 
     )
 
-    #quito la leyenda
-    fig_uso.update_layout(showlegend=False)
+    fig_tendencia.update_layout(
+        template="plotly_dark",
+        xaxis=dict(dtick=1), # Muestra todos los números del 1 al 10 en el eje X
+        xaxis_title="Nivel de Adicción (Puntaje)",
+        yaxis_title="Horas de Uso (Promedio)",
+        showlegend=False
+    )
 
-    #mostrar en el dashboard
-    st.plotly_chart(fig_uso, use_container_width=True)
+    st.plotly_chart(fig_tendencia, use_container_width=True)
 
-    #analisis
-    st.markdown("### 📝 Análisis de Intensidad de Uso vs Adicción")
+    st.markdown("### 📝 Análisis de Resultados: Uso Diario vs. Adicción")
 
-    st.write("""
-El diagrama de cajas y bigotes con muescas revela hallazgos estadísticos contundentes:
+    col_a, col_b = st.columns([1, 1])
 
-1. **Significancia Estadística:** Se observa que las **muescas no se solapan** entre la mayoría de los niveles (especialmente entre el nivel 6, 7, 8 y 9). Esto indica, con un **95% de confianza**, que las medianas de horas de uso diario son significativamente diferentes entre cada nivel de adicción.
-2. **Relación Proporcional:** Existe una tendencia ascendente casi perfecta. A mayor puntaje de adicción, tanto la mediana como los cuartiles se desplazan hacia arriba, pasando de un uso de ~2 horas (Nivel 3) a más de **7 horas diarias** (Nivel 9).
-3. **Dispersión de los Datos:** El nivel de adicción 7 muestra una caja más amplia y puntos más dispersos, lo que sugiere que es un "punto de quiebre" donde el comportamiento de los estudiantes varía más antes de estabilizarse en un uso intensivo crónico (niveles 8 y 9).
+    with col_a:
+        st.write("""
+    **Observación de la Tendencia:**
+    Se identifica una **correlación positiva directa** entre las horas de uso y el nivel de adicción. 
+    A medida que el usuario se desplaza del nivel 3 al nivel 9, el promedio de horas de uso se triplica.
+    """)
+
+    with col_b:
+        st.write("""
+    **Punto Crítico:**
+    El salto más significativo ocurre a partir del **nivel 7**, donde el uso diario supera las 5 horas promedio, 
+    estabilizándose en niveles críticos (7 horas) para los puntajes de adicción más altos (8 y 9).
+    """)
+
+    #conclusión general
+    st.write(f"""
+**💡 Conclusión:** Los datos sugieren que el tiempo de exposición a las pantallas es un factor determinante en la percepción de adicción. 
+Un uso superior a las **6 horas diarias** coincide sistemáticamente con los niveles de adicción más elevados en la muestra.
 """)
+
 
 with tab3:
     st.subheader("Análisis de las Plataformas más Utilizadas")
 
     #cuantas veces sale
-    conteo_plataformas = df['Plataforma_Mas_Usada'].value_counts().reset_index()
+    conteo_plataformas = df_filtrado['Plataforma_Mas_Usada'].value_counts().reset_index()
     conteo_plataformas.columns = ['Plataforma', 'Cantidad']
 
     #grafico de barras
@@ -218,3 +296,35 @@ with tab3:
     **Análisis:** En este gráfico se observa la distribución de los **{len(df)}** estudiantes según su plataforma principal. 
     Esto nos permite identificar qué redes sociales tienen mayor impacto en su rutina diaria.
     """)
+
+with tab4:
+    df_promedio_adiccion = df_filtrado.groupby('Pais')['Puntaje_Adiccion'].mean().reset_index()
+
+    #ordenar de mayor a menor 
+    df_promedio_adiccion = df_promedio_adiccion.sort_values(by='Puntaje_Adiccion', ascending=True)
+
+    st.subheader("Ranking de Adicción Promedio por País")
+
+    #crear el gráfico de barras horizontales 
+    fig_ranking = px.bar(
+        df_promedio_adiccion,
+        x='Puntaje_Adiccion',
+        y='Pais',
+        orientation='h', 
+        title="Nivel de Adicción Promedio (USA, India, Canadá)",
+        text_auto='.2f', 
+        color='Puntaje_Adiccion', 
+        color_continuous_scale='Blues' 
+)
+
+    fig_ranking.update_layout(
+        template="plotly_dark",
+        xaxis_title="Promedio del Puntaje",
+        yaxis_title="",
+        coloraxis_showscale=False # Oculta la barra de colores lateral
+    )
+
+    st.plotly_chart(fig_ranking, use_container_width=True)
+    
+
+
