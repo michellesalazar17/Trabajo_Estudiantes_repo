@@ -32,9 +32,71 @@ if "Todos" not in nivel_seleccionado and len(nivel_seleccionado) > 0:
     df_filtrado = df_filtrado[df_filtrado['Nivel_Academico'].isin(nivel_seleccionado)]
 
 #empieza la fiesta
-tab1, tab2, tab3, tab4 = st.tabs(["Rendimiento Academico", "Bienestar Estudiantil", "Plataformas Mas Usada", "Nivel de Adiccion"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["Valores claves", "Rendimiento Academico", "Bienestar Estudiantil", "Plataformas Mas Usada", "Nivel de Adiccion"])
 
 with tab1:
+    
+    st.caption("Nota: los datos presentados provienen del dataset Estudiantes_final.csv, que refleja el bienestar de los estudiantes enfente del uso de las redes sociales ")
+
+    # calculamos los valores clave
+    media_uso = df_filtrado['Promedio_Horas_Uso_Diario'].mean()
+    mediana_adiccion = df_filtrado['Puntaje_Adiccion'].median()
+    total_estudiantes = len(df_filtrado)
+
+    #creo columnas
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.metric("Promedio Uso Diario", f"{media_uso:.1f} horas")
+        st.caption("Media aritmética del tiempo en pantalla.")
+
+    with col2:
+        st.metric("Mediana de Adicción", f"{mediana_adiccion:.0f} pts")
+        st.caption("Punto medio de la escala de adicción.")
+
+    with col3:
+        st.metric("Total Estudiantes", total_estudiantes)
+        st.caption("Muestra total analizada.")
+
+    uso_maximo = df_filtrado['Promedio_Horas_Uso_Diario'].max()
+    uso_minimo = df_filtrado['Promedio_Horas_Uso_Diario'].min()
+    
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.metric("", f"{uso_maximo} horas/día")
+        st.caption("hora de uso maxima")
+        
+        st.metric("", f"{uso_minimo} horas/día")
+        st.caption("hora de uso minima")
+    
+        maximo_adiccion = df_filtrado['Puntaje_Adiccion'].max()
+        minimo_adiccion = df_filtrado['Puntaje_Adiccion'].min()
+    
+    with col2:
+        st.metric("", f"{maximo_adiccion}")
+        st.caption("nivel maximo de adiccion")
+
+        st.metric("", f"{minimo_adiccion}")
+        st.caption("nivel minimo de minimo adiccion")
+
+    with col3:
+        conteo = df_filtrado['Afecta_Rendimiento_Academico'].value_counts()
+
+        # 2. Extraer los números
+        si_afecta = conteo.get('Yes', 0)
+        no_afecta = conteo.get('No', 0)
+
+        st.metric("", value=f"{si_afecta} personas")
+        st.caption("Conteo total de quienes si les afecto su rendimiento academico")
+
+        st.metric("", value=f"{no_afecta} personas")
+        st.caption("Conteo total de quienes no les afecto su rendimiento academico")
+
+with tab2:
+    
+    st.caption("Nota: los datos presentados provienen del dataset Estudiantes_final.csv, que refleja el bienestar de los estudiantes enfente del uso de las redes sociales ")
+
     st.subheader("Impacto en el Rendimiento")
     
     #gráfico (Box Plot)
@@ -119,9 +181,6 @@ with tab1:
 
     st.plotly_chart(fig, use_container_width=True)
 
-    total_alumnos = df_conteo['total'].sum()
-    st.write(f"Total de estudiantes analizados: **{total_alumnos}**")
-
 st.markdown("---") # Línea divisoria
 
 # Creamos la "ventana" desplegable
@@ -138,40 +197,44 @@ with st.expander("📂 Haz clic aquí para ver la Base de Datos completa"):
         }
     )
 
-with tab2:
-    st.subheader("Adicción vs Sueño")
+with tab3:
     
-    # creacion del histograma
-    fig_hist = px.histogram(
-    df_filtrado, 
-    x="Horas_Sueno", 
-    color="Puntaje_Adiccion",
-    title="Distribución de Horas de Sueño por Nivel de Adicción",
-    labels={"Horas_Sueno": "Horas de Sueño", "count": "Número de Estudiantes"},
-    opacity=0.7,
-    barmode="group" 
-)
-    #ajuste del diseno
-    fig_hist.update_layout(
-    bargap=0.1, 
-    xaxis_title="Horas de Sueño",
-    yaxis_title="Cantidad de Estudiantes"
-)
+    st.caption("Nota: los datos presentados provienen del dataset Estudiantes_final.csv, que refleja el bienestar de los estudiantes enfente del uso de las redes sociales ")
+
+    st.markdown("### 📉 Tendencia: Horas de Sueño por Nivel de Adicción")
+
+    # 1. Agrupamos para obtener el promedio de horas de sueño por cada nivel de adicción
+    df_sueno_tendencia = df_filtrado.groupby('Puntaje_Adiccion')['Horas_Sueno'].mean().reset_index()
+
+    # 2. Crear el gráfico de líneas con puntos (markers=True)
+    fig_linea_sueno = px.line(
+        df_sueno_tendencia,
+        x='Puntaje_Adiccion',
+        y='Horas_Sueno',
+        title="Relación entre Nivel de Adicción y Promedio de Horas de Sueño",
+        markers=True, # Esto añade los puntos en cada nivel
+        labels={
+            'Puntaje_Adiccion': 'Nivel de Adicción (1-10)',
+            'Horas_Sueno': 'Promedio Horas de Sueño'
+        }
+    )
+
+    # 3. Personalizar los puntos y la línea
+    fig_linea_sueno.update_traces(
+        line_color='#ADD8E6', 
+        marker=dict(size=10, symbol='circle', line=dict(width=2, color='DarkSlateGrey'))
+    )
+
+    # 4. Mostrar en Streamlit
+    st.plotly_chart(fig_linea_sueno, use_container_width=True)
+
+    st.subheader("Interpretacion")
     
-    #paar que aparezca en la app
-    st.plotly_chart(fig_hist, use_container_width=True)
-
-    #analisis
-    st.markdown("### 📝 Análisis del Histograma")
-
-    st.write("""
-Al observar la distribución de frecuencias, se identifican tres hallazgos clave:
-
-1. **Desplazamiento de Masa:** Los niveles de adicción más altos (colores azules/celestes) muestran una clara **asimetría hacia la izquierda**, concentrando a la mayoría de los estudiantes en el rango de **4 a 6 horas** de sueño.
-2. **Brecha de Descanso:** Existe una diferencia marcada entre los picos de frecuencia. Mientras que los niveles de adicción moderada alcanzan su máximo cerca de las **7-8 horas**, los niveles críticos rara vez superan las 6 horas.
-3. **Zona de Riesgo:** El tramo de **menos de 5 horas** de sueño está poblado casi exclusivamente por estudiantes con puntajes de adicción elevados, lo que sugiere que la dependencia digital es un factor determinante en la privación del sueño.
+    st.write("""1. **Punto de Quiebre:** Se observa que hasta el nivel 6 de adicción, el promedio de sueño se mantiene estable (cerca de las 7.5 - 8 horas).
+2. **Correlación Negativa:** A partir del nivel 6, existe una caída drástica. Los estudiantes con nivel 9 de adicción apenas alcanzan las **5.3 horas** de sueño promedio.
+3. **Impacto Crítico:** Existe una diferencia de casi **2.5 horas de sueño** entre un estudiante con adicción baja y uno con adicción alta.
 """)
-    
+
     st.divider() 
 
     st.header("Distribución de Salud Mental según Nivel de Adicción")
@@ -271,8 +334,20 @@ Un uso superior a las **6 horas diarias** coincide sistemáticamente con los niv
 """)
 
 
-with tab3:
+with tab4:
+    
+    st.caption("Nota: los datos presentados provienen del dataset Estudiantes_final.csv, que refleja el bienestar de los estudiantes enfente del uso de las redes sociales ")
+
     st.subheader("Análisis de las Plataformas más Utilizadas")
+
+    #colores a la app 
+    colores_app = {
+        "Instagram" : "#E1306C",
+        "TikTok" : "#000000",
+        "WhatsApp" : "#25D366",
+        "Facebook" : "#1877F2",
+        'Twitter' : "#1DA1F2"
+    }
 
     #cuantas veces sale
     conteo_plataformas = df_filtrado['Plataforma_Mas_Usada'].value_counts().reset_index()
@@ -286,6 +361,7 @@ with tab3:
         title="Ranking de Popularidad por Red Social",
         labels={'Cantidad': 'Número de Estudiantes', 'Plataforma': 'Red Social'},
         color='Plataforma',
+        color_discrete_map= colores_app,
         text_auto=True 
     )
     
@@ -297,7 +373,10 @@ with tab3:
     Esto nos permite identificar qué redes sociales tienen mayor impacto en su rutina diaria.
     """)
 
-with tab4:
+with tab5:
+    
+    st.caption("Nota: los datos presentados provienen del dataset Estudiantes_final.csv, que refleja el bienestar de los estudiantes enfente del uso de las redes sociales ")
+ 
     df_promedio_adiccion = df_filtrado.groupby('Pais')['Puntaje_Adiccion'].mean().reset_index()
 
     #ordenar de mayor a menor 
@@ -325,6 +404,33 @@ with tab4:
     )
 
     st.plotly_chart(fig_ranking, use_container_width=True)
+
+    st.divider()
+
+    st.markdown("### 📊 Impacto en el Rendimiento por Plataforma")
+
+    # agrupamos los datos para contar estudiantes por Red Social y si les afecta
+    df_impacto_plataforma = df_filtrado.groupby(['Plataforma_Mas_Usada', 'Afecta_Rendimiento_Academico']).size().reset_index(name='Cantidad_Estudiantes')
+
+    #crear el gráfico de barras agrupadas
+    fig_impacto = px.bar(
+        df_impacto_plataforma, 
+        x='Plataforma_Mas_Usada', 
+        y='Cantidad_Estudiantes', 
+        color='Afecta_Rendimiento_Academico',
+        barmode='group', 
+        title="Distribución de Impacto Académico según Red Social",
+        labels={
+            'Plataforma_Mas_Usada': 'Plataforma', 
+            'Cantidad_Estudiantes': 'Número de Estudiantes',
+            'Afecta_Rendimiento_Academico': '¿Afecta?'
+        },
+        color_discrete_map={'Yes': '#EF553B', 'No': '#636EFA'}, 
+        text_auto=True 
+    )
+
+    # 3. Mostrar el gráfico
+    st.plotly_chart(fig_impacto, use_container_width=True)
     
 
 
