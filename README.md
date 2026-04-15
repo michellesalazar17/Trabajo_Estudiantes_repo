@@ -13,11 +13,13 @@ Analizar la adicción a las redes sociales y su impacto en el bienestar académi
 
 ## Objetivos específicos
 
-1.	Describir la distribución estadística de los puntajes de adicción digital de los estudiantes mediante medidas de tendencia central y dispersión, para determinar si existen grupos con una dependencia significativamente alta.
-   
-2.	Cuantificar la relación entre el puntaje de adicción y los indicadores de bienestar del estudiante evaluando cómo el incremento en las horas de uso diario se asocia linealmente con la inestabilidad de la salud mental y la reducción de las horas de sueño.
-
-3. Identificar patrones geográficos de riesgo mediante la clasificación de países según sus niveles de adición permitiendo detectar tendencias regionales y variaciones significativas en el impacto de la dependencia digital.
+1. Describir estadisticamente los puntajes de adicción a las redes sociales de los estudiantes para determinar si existen grupos con una dependencia significativamente alta.
+  
+2. Comparar los niveles de adicción a las redes sociales entre los países con mayor representatividad, identificando diferencias significativas en sus distribuciones.
+  
+3. Determinar la asociación entre el nivel de adicción a las redes sociales y la percepción del rendimiento academico.
+  
+4. Cuantificar el impacto de adiccion en la salud mental y calidad del sueño en los estudiantes, especificando las plataformas asociadas a estos efectos.
 
 Link del Dashboard:
 https://grupo5estudiantes.streamlit.app/
