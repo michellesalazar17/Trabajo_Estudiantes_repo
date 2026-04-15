@@ -104,7 +104,7 @@ Mediante éste análisis se busca aplicar estrategias y concientizar la prevenci
   
   \item{Determinar la asociación entre el nivel de adicción a las redes sociales y la percepción del rendimiento academico.}
   
-  \item{Cuantificar el impacto del uso promedio diario de redes sociales en la salud mental y calidad del sueño en los estudiantes, especificando las plataformas asociadas a estos efectos.}
+  \item{Cuantificar el impacto de adiccion en la salud mental y calidad del sueño en los estudiantes, especificando las plataformas asociadas a estos efectos.}
   \end{itemize}
   
 
@@ -339,11 +339,156 @@ porcentaje <- df_est %>%
 ```
 
 
+\subsubsection{Analisis exploratorio}
 
-\subsection{}
+En esta seccion se conocen las estadisticas decriptivas de la 
+base de datos para conocer como se comportan y se distribuyen cada variable en estudio.
 
 
-Descripción\
+```{r}
+tabla_descriptivas <- df_est %>%
+  summarise(
+    # Salud mental
+    salud_mental_prom = mean(salud_mental, na.rm = TRUE),
+    salud_mental_mediana = median(salud_mental, na.rm = TRUE),
+    salud_mental_sd = sd(salud_mental, na.rm = TRUE),
+    salud_mental_min = min(salud_mental, na.rm = TRUE),
+    salud_mental_max = max(salud_mental, na.rm = TRUE),
+    
+    # Horas de sueño
+    sueño_prom = mean(horas_sueño, na.rm = TRUE),
+    sueño_mediana = median(horas_sueño, na.rm = TRUE),
+    sueño_sd = sd(horas_sueño, na.rm = TRUE),
+    sueño_min = min(horas_sueño, na.rm = TRUE),
+    sueño_max = max(horas_sueño, na.rm = TRUE),
+    
+    # Uso promedio diario
+    uso_prom = mean(promedio_uso_diario, na.rm = TRUE),
+    uso_mediana = median(promedio_uso_diario, na.rm = TRUE),
+    uso_sd = sd(promedio_uso_diario, na.rm = TRUE),
+    uso_min = min(promedio_uso_diario, na.rm = TRUE),
+    uso_max = max(promedio_uso_diario, na.rm = TRUE),
+    
+    # Adicción
+    adiccion_prom = mean(adiccion, na.rm = TRUE),
+    adiccion_mediana = median(adiccion, na.rm = TRUE),
+    adiccion_sd = sd(adiccion, na.rm = TRUE),
+    adiccion_min = min(adiccion, na.rm = TRUE),
+    adiccion_max = max(adiccion, na.rm = TRUE)
+  )
+
+# Tabla para variables categóricas (frecuencias)
+tabla_red_social <- df_est %>%
+  count(red_social) %>%
+  mutate(Porcentaje = round(n / sum(n) * 100, 1)) %>%
+  arrange(desc(n))
+
+tabla_pais <- df_est %>%
+  count(pais) %>%
+  mutate(Porcentaje = round(n / sum(n) * 100, 1)) %>%
+  arrange(desc(n))
+
+
+tabla_nivel_academico <- df_est %>%
+  count(nivel_academico) %>%
+  mutate(Porcentaje = round(n / sum(n) * 100, 1))
+
+tabla_academico <- df_est %>%
+  count(rendimiento_acm) %>%
+  mutate(Porcentaje = round(n / sum(n) * 100, 1))
+
+
+
+# Grafico1: Barras por red social 
+
+colores_redes <- c(
+  "TikTok" = "#0D0D0D",     
+  "Instagram" = "#FF99C8",   
+  "Facebook" = "#90DBF4",    
+  "Twitter" = "#9BF6FF",    
+  "WhatsApp" = "#CAFFBF")
+
+ggplot(tabla_red_social, aes(x = reorder(red_social, -n), y = n, fill = red_social)) +
+  geom_bar(stat = "identity", width = 0.7) +
+  geom_text(aes(label = paste0(n, " (", Porcentaje, "%)")), vjust = -0.5, size = 3) +
+  scale_fill_manual(values = colores_redes) +
+  labs(title = "Frecuencia de uso de Redes Sociales",
+       x = "Red Social", 
+       y = "Cantidad de estudiantes") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+        plot.subtitle = element_text(hjust = 0.5, size = 10),
+        axis.text.x = element_text(size = 11),
+        axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12))
+
+
+#  Grafico2: Sectores por paises
+
+# Definir colores específicos para cada país
+colores_paises <- c(
+  "India" = "#014034",     
+  "USA" = "#038c73",    
+  "Canada" = "#36bfb1"  
+  
+)
+
+# Gráfico de donut (sector con agujero)
+ggplot(tabla_pais, aes(x = "", y = n, fill = pais)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  geom_text(aes(label = paste0(round(n/sum(n)*100, 1), "%")), 
+            position = position_stack(vjust = 0.5), size = 5) +
+  scale_fill_manual(values = colores_paises) +
+  labs(title = "Proporción de estudiantes por País",
+       subtitle = "Distribución geográfica de la muestra",
+       fill = "País") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+        plot.subtitle = element_text(hjust = 0.5, size = 10),
+        legend.position = "right",
+        legend.title = element_text(face = "bold"))
+
+
+# Grafico3: Boxplot de variables cuantitativas
+
+df_boxplot <- df_est %>%
+  select(salud_mental, horas_sueño, promedio_uso_diario, adiccion) %>%
+  pivot_longer(everything(), names_to = "variable", values_to = "valor")
+
+
+colores_boxplot <- c(
+  "salud_mental" = "#b188ef",        
+  "horas_sueño" = "#ab71eb",         
+  "promedio_uso_diario" = "#8671e1", 
+  "adiccion" = "#6071d7")
+
+
+ggplot(df_boxplot, aes(x = variable, y = valor, fill = variable)) +
+  geom_boxplot(alpha = 0.8, width = 0.6, outlier.color = "blue", outlier.size = 2) +
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 4, color = "black") +
+  scale_fill_manual(values = colores_boxplot) +
+  scale_x_discrete(labels = c("salud_mental" = "Salud Mental",
+                              "horas_sueño" = "Horas de Sueño",
+                              "promedio_uso_diario" = "Uso Diario",
+                              "adiccion" = "Adicción")) +
+  facet_wrap(~variable, scales = "free")+
+  labs(title = "Distribución de variables cuantitativas",
+       x = "", 
+       y = "Valores") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+        plot.subtitle = element_text(hjust = 0.5, size = 10),
+        axis.text.x = element_text(size = 11, face = "bold"),
+        axis.title.y = element_text(size = 12),
+        plot.caption = element_text(hjust = 0.5, face = "italic"),
+        strip.text = element_blank())
+
+
+```
+
 
 \chapter{Análisis de Resultados}
 
