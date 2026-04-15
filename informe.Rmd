@@ -494,9 +494,19 @@ ggplot(df_boxplot, aes(x = variable, y = valor, fill = variable)) +
 
 {\small Este capítulo presenta los resultados obtenidos al aplicar las metodologías descritas en el capítulo anterior, así como del análisis estadístico descriptivo de las variables estudiadas y las ventajas y desventajas al aplicar dichos tests.}
 
-\section{Presentación de resultados 1}
+\section{Presentación de resultados }
+```{r}
+ggplot(df_est, aes(x = rendimiento_acm, y = adiccion, fill = rendimiento_acm))+
+  geom_col(position = "dodge")+
+  scale_fill_manual(values = c("No" ="#FFADD9", "Yes" = "#611F42"))+
+  labs(title ="Distribucion de los niveles de adiccion en 
+       el rendimiento academico",
+       x ="Afecto del rendimiento academico",
+       y = "Puntaje Adiccion")+
+  theme_minimal()
+```
 
-Descripción\ 
+Podemos observar que hay un nivel muy alto con respecto a los que consideran que le afecta en el rendimiento academico.
 
 \section{Presentación de resultados 2}
 
