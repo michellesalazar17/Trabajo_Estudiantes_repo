@@ -62,11 +62,11 @@ library(scales)
 Introducción del trabajo de investigación
 
 \chapter{Planteamiento del Problema}
-Desde su aparición las redes sociales cambiaron la manera en que las personas interactúan con el mundo real, desde servir como medios de comunicación hasta convertirse en plataformas que afectan el comportamiento del ser humano. En los estudiantes estas plataformas son útiles para acceder a información y conocer noticias mundiales. Sin embargo, el uso de las redes sociales se ha transformado en un fenómeno que crece a gran escala, la adicción a las **Redes Sociales**.
+Según Echeburúa (Echeburúa, 2012), Desde su aparición las redes sociales cambiaron la manera en que las personas interactúan con el mundo real, desde servir como medios de comunicación hasta convertirse en plataformas que afectan el comportamiento del ser humano. En los estudiantes estas plataformas son útiles para acceder a información y conocer noticias mundiales. Sin embargo, el uso de las redes sociales se ha transformado en un fenómeno que crece a gran escala, la adicción a las **Redes Sociales**.
 
-El problema radica en que el uso de las redes puede llegar a un extremo de dependencia, e incluso excesiva en algunos casos. Siendo un factor que influye en los estudiantes y en su capacidad de concentración, afectando su rendimiento académico.
+El problema radica en que el uso de las redes puede llegar a un extremo de dependencia, e incluso excesiva en algunos casos. Siendo un factor que influye en los estudiantes y en su capacidad de concentración, afectando su rendimiento académico
 
-La gran mayoría de estudiantes tienen acceso a las diferentes plataformas de redes sociales, pero desconocemos su comportamiento a nivel geográfico y variables como el tipo específico de red social (TikTok, Instagram, WhatsApp, etc.) factores como la salud mental, o el entorno geográfico puede darnos ciertas “tendencias” sobre la dependencia a las redes sociales. Por esto, es necesario investigar si la adicción a las redes sociales se comporta de la misma manera en todo el mundo, o responde a  patrones específicos por región.
+Según (Jorge Molina y Paola Espinosa,2024), La gran mayoría de estudiantes tienen acceso a las diferentes plataformas de redes sociales, pero desconocemos su comportamiento a nivel geográfico y variables como el tipo específico de red social (TikTok, Instagram, WhatsApp, etc.) factores como la salud mental, o el entorno geográfico puede darnos ciertas “tendencias” sobre la dependencia a las redes sociales. Por esto, es necesario investigar si la adicción a las redes sociales se comporta de la misma manera en todo el mundo, o responde a  patrones específicos por región.
 
 Argumento final. Debido a esto, se plantea las siguientes preguntas de investigación:
 
