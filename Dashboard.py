@@ -33,7 +33,7 @@ if "Todos" not in nivel_seleccionado and len(nivel_seleccionado) > 0:
     df_filtrado = df_filtrado[df_filtrado['Nivel_Academico'].isin(nivel_seleccionado)]
 
 #empieza la fiesta
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["Valores claves", "Rendimiento Academico", "Bienestar Estudiantil", "Plataformas Mas Usada", "Nivel de Adiccion"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["📊Valores claves", "📝Rendimiento Academico", "🧠Bienestar Estudiantil", "📱Plataformas Mas Usada", "📉Nivel de Adiccion"])
 
 with tab1:
     
@@ -43,6 +43,14 @@ with tab1:
     media_uso = df_filtrado['Promedio_Horas_Uso_Diario'].mean()
     mediana_adiccion = df_filtrado['Puntaje_Adiccion'].median()
     total_estudiantes = len(df_filtrado)
+    uso_maximo = df_filtrado['Promedio_Horas_Uso_Diario'].max()
+    uso_minimo = df_filtrado['Promedio_Horas_Uso_Diario'].min()
+    maximo_adiccion = df_filtrado['Puntaje_Adiccion'].max()
+    minimo_adiccion = df_filtrado['Puntaje_Adiccion'].min()
+    conteo = df_filtrado['Afecta_Rendimiento_Academico'].value_counts()
+    #extraer los numeros
+    si_afecta = conteo.get('Yes', 0)
+    no_afecta = conteo.get('No', 0)
 
     #creo columnas
     col1, col2, col3 = st.columns(3)
@@ -51,50 +59,43 @@ with tab1:
         st.metric("Promedio Uso Diario", f"{media_uso:.1f} horas")
         st.caption("Media aritmética del tiempo en pantalla.")
 
+        st.divider()
+
+        st.metric("", f"{uso_maximo} horas/día")
+        st.caption("hora de uso maxima")
+
+        st.divider()
+        
+        st.metric("", f"{uso_minimo} horas/día")
+        st.caption("hora de uso minima")
+
     with col2:
         st.metric("Mediana de Adicción", f"{mediana_adiccion:.0f} pts")
         st.caption("Punto medio de la escala de adicción.")
+
+        st.divider()
+
+        st.metric("", f"{maximo_adiccion} pts")
+        st.caption("nivel maximo de adiccion")
+
+        st.divider()
+
+        st.metric("", f"{minimo_adiccion} pts")
+        st.caption("nivel minimo de adiccion")
 
     with col3:
         st.metric("Total Estudiantes", total_estudiantes)
         st.caption("Muestra total analizada.")
 
-    uso_maximo = df_filtrado['Promedio_Horas_Uso_Diario'].max()
-    uso_minimo = df_filtrado['Promedio_Horas_Uso_Diario'].min()
-
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        st.metric("", f"{uso_maximo} horas/día")
-        st.caption("hora de uso maxima")
-        
-        st.metric("", f"{uso_minimo} horas/día")
-        st.caption("hora de uso minima")
-    
-        maximo_adiccion = df_filtrado['Puntaje_Adiccion'].max()
-        minimo_adiccion = df_filtrado['Puntaje_Adiccion'].min()
-    
-    with col2:
-        st.metric("", f"{maximo_adiccion}")
-        st.caption("nivel maximo de adiccion")
-
-        st.metric("", f"{minimo_adiccion}")
-        st.caption("nivel minimo de minimo adiccion")
-
-    with col3:
-        conteo = df_filtrado['Afecta_Rendimiento_Academico'].value_counts()
-
-        #extraer los numeros
-        si_afecta = conteo.get('Yes', 0)
-        no_afecta = conteo.get('No', 0)
+        st.divider()
 
         st.metric("", value=f"{si_afecta} personas")
-        st.caption("Conteo total de quienes si les afecto su rendimiento academico")
+        st.caption("Si les afecto su rendimiento academico")
 
         st.divider()
 
         st.metric("", value=f"{no_afecta} personas")
-        st.caption("Conteo total de quienes no les afecto su rendimiento academico")
+        st.caption("No les afecto su rendimiento academico")
 
 with tab2:
     
