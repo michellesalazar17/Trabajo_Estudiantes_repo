@@ -18,3 +18,6 @@ Analizar la adicción a las redes sociales y su impacto en el bienestar académi
 2.	Cuantificar la relación entre el puntaje de adicción y los indicadores de bienestar del estudiante evaluando cómo el incremento en las horas de uso diario se asocia linealmente con la inestabilidad de la salud mental y la reducción de las horas de sueño.
 
 3. Identificar patrones geográficos de riesgo mediante la clasificación de países según sus niveles de adición permitiendo detectar tendencias regionales y variaciones significativas en el impacto de la dependencia digital.
+
+Link del Dashboard:
+https://grupo5estudiantes.streamlit.app/
